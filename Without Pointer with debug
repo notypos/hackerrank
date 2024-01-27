@@ -45,7 +45,7 @@ int main() {
     // loop through quereies
     for(int i=0;i < q; i++)
     {    
-        int match;
+        int match = -1;
         // cout << i << "outer loop" << endl;
          // loop through vector
         for (int j=0; j < n; j++)
@@ -54,7 +54,7 @@ int main() {
             // cout << "queriesi=" <<queries[i] << "v[j] =" << v[j]<<endl;
             // cout << "check for match" << endl;
             // if query matches vector
-            if (queries[i] == v[j])
+            if (match == -1)
             {
                 // print
                 // cout << "it matches"<< endl;
@@ -70,7 +70,7 @@ int main() {
         if (queries[i] != v[match])
         {
         // cout << "it didn't match" << endl;
-        for (int k = i; k < n; k++)
+        for (int k = 0; k < n; k++)
         {
         //    cout << "k is " << k <<endl;
             if(v[k] > queries[i])
