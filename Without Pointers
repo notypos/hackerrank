@@ -1,0 +1,87 @@
+// Here is how to solve Lower Bound-STL without using pointers
+// I left all the debugging code in-place as comments
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */  
+    int n;
+    int q;
+    vector<int> v;
+    
+    // Enter size of vector
+    cin >> n;
+    
+    // Make vector
+    for(int m=0;m<n;m++)
+    {
+        // n sorted integers
+        cin >> q;
+        v.push_back(q);
+        //cout << v[m]<< " ";
+    }
+    //cout << " n vector" << endl;
+    // num queries
+    cin >> q;
+    //cout << q << "num queries" << endl;
+    
+    // make query vector
+    vector<int> queries;
+    for (int loop = 0; loop < q; loop++)
+    {
+        int num;
+        cin >> num;
+        queries.push_back(num);
+        //cout << queries[loop] << " ";
+    }
+    //cout << endl;
+    // compare vectors
+    // loop through quereies
+    for(int i=0;i < q; i++)
+    {    
+        int match;
+        // cout << i << "outer loop" << endl;
+         // loop through vector
+        for (int j=0; j < n; j++)
+        {
+            // cout << j << "is j, matches?..." << endl;
+            // cout << "queriesi=" <<queries[i] << "v[j] =" << v[j]<<endl;
+            // cout << "check for match" << endl;
+            // if query matches vector
+            if (queries[i] == v[j])
+            {
+                // print
+                // cout << "it matches"<< endl;
+                cout << "Yes" << " " << j+1 << endl;
+                // cout << "vj=" << v[j] << endl;
+                match = j;
+                // cout << "match = " << match << "vmatch =" << v[match] << endl;
+                // it matches so you should increase starting pointer
+                break;
+            }
+        }
+        // cout << "check next conditional" << queries[i] << v[match] << endl;
+        if (queries[i] != v[match])
+        {
+        // cout << "it didn't match" << endl;
+        for (int k = i; k < n; k++)
+        {
+        //    cout << "k is " << k <<endl;
+            if(v[k] > queries[i])
+            {
+                // cout <<"check for greater" << queries[i] << " " << v[k] << endl;
+                cout << "No" << " " << k+1 << endl;
+                break;
+            }
+        }
+        }
+    }
+
+    return 0;
+}
